@@ -1,0 +1,233 @@
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.pulse {
+  animation: pulse 1.5s infinite;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(45deg, #FF6B6B, #FF8E8E);
+  color: white;
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 20px;
+}
+
+.gallery-container {
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 100%);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.header {
+  width: 100%;
+  max-width: 1400px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 3.5rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+  text-shadow: 3px 3px 6px rgba(0,0,0,0.1);
+  font-family: "'Segoe UI', sans-serif";
+  font-weight: 800;
+  background: linear-gradient(45deg, #2c3e50, #3498db);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header .divider {
+  width: 150px;
+  height: 6px;
+  background: linear-gradient(90deg, #FF6B6B, #4ECDC4);
+  margin: 0 auto 20px;
+  border-radius: 3px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.controls {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.controls select {
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  border-radius: 25px;
+  border: 2px solid #4ECDC4;
+  background: white;
+  color: #2c3e50;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  min-width: 200px;
+}
+
+.controls button {
+  padding: 12px 30px;
+  background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.controls button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+.controls button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1400px;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.cat-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  transform: perspective(1000px) rotateX(0deg);
+  aspect-ratio: 1;
+}
+
+.cat-card:hover {
+  transform: perspective(1000px) rotateX(5deg) translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+.cat-card img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.cat-card .info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  padding: 20px;
+  color: white;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.cat-card:hover .info {
+  transform: translateY(0);
+}
+
+.cat-card .info h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.cat-card .info p {
+  margin: 5px 0 0;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  max-width: 90%;
+  max-height: 90vh;
+  overflow: auto;
+  width: 100%;
+}
+
+.modal-content img {
+  width: 100%;
+  height: auto;
+  max-height: 60vh;
+  object-fit: contain;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.modal-content h2 {
+  margin: 0 0 10px;
+  color: #2c3e50;
+}
+
+.modal-content p {
+  margin: 0 0 10px;
+  color: #2c3e50;
+}
+
+.modal-content strong {
+  margin-right: 5px;
+}

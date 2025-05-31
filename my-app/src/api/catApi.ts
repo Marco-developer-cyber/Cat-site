@@ -1,4 +1,4 @@
-const CAT_API_KEY = 'REPLACE_ME';
+const CAT_API_KEY = 'live_B3XDba5VxEboJRpU78SZpPGEed5xFoKVrF5WvMqyndhzjstzBPJ0WDuH4bcaTEoX';
 const BASE_URL = 'https://api.thecatapi.com/v1';
 
 interface Cat {
@@ -17,11 +17,17 @@ interface Breed {
   description: string;
 }
 
+const headers = {
+  'x-api-key': CAT_API_KEY,
+};
+
 export const fetchBreeds = async (): Promise<Breed[]> => {
   try {
-    const response = await fetch('https://api.thecatapi.com/v1/breeds');
+    const response = await fetch(`${BASE_URL}/breeds`, { headers });
     if (!response.ok) {
-      throw new Error('Failed to fetch breeds');
+      const errorText = await response.text();
+      console.error('Failed to fetch breeds:', response.status, errorText);
+      throw new Error(`Failed to fetch breeds: ${response.statusText}`);
     }
     return await response.json();
   } catch (error) {
@@ -33,12 +39,14 @@ export const fetchBreeds = async (): Promise<Breed[]> => {
 export const fetchCats = async (breedId?: string): Promise<Cat[]> => {
   try {
     const url = breedId 
-      ? `https://api.thecatapi.com/v1/images/search?limit=10&breed_ids=${breedId}`
-      : 'https://api.thecatapi.com/v1/images/search?limit=10';
+      ? `${BASE_URL}/images/search?limit=10&breed_ids=${breedId}`
+      : `${BASE_URL}/images/search?limit=10`;
     
-    const response = await fetch(url);
+    const response = await fetch(url, { headers });
     if (!response.ok) {
-      throw new Error('Failed to fetch cats');
+      const errorText = await response.text();
+      console.error('Failed to fetch cats:', response.status, errorText);
+      throw new Error(`Failed to fetch cats: ${response.statusText}`);
     }
     return await response.json();
   } catch (error) {
@@ -49,15 +57,15 @@ export const fetchCats = async (breedId?: string): Promise<Cat[]> => {
 
 export const fetchBreedInfo = async (breedId: string) => {
   try {
-    const response = await fetch(
-      `${BASE_URL}/breeds/${breedId}?api_key=${CAT_API_KEY}`
-    );
+    const response = await fetch(`${BASE_URL}/breeds/${breedId}`, { headers });
     if (!response.ok) {
-      throw new Error('Failed to fetch breed info');
+      const errorText = await response.text();
+      console.error('Failed to fetch breed info:', response.status, errorText);
+      throw new Error(`Failed to fetch breed info: ${response.statusText}`);
     }
     return await response.json();
   } catch (error) {
     console.error('Error fetching breed info:', error);
     throw error;
   }
-}; 
+};
