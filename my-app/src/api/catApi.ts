@@ -1,5 +1,5 @@
 const CAT_API_KEY = 'REPLACE_ME';
-const BASE_URL = 'https://api.thecatapi.com/v1/images/search?limit=10';
+const BASE_URL = 'https://api.thecatapi.com/v1';
 
 interface Cat {
   id: string;
